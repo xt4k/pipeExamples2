@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>MobyMaxApplication</groupId>
+    <artifactId>MobyMaxApplication</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>MobyMax</name>
+
+
+    <distributionManagement>
+        <repository>
+            <id>internal.repo</id>
+            <name>Internal repo</name>
+            <url>${basedir}\target</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+
+        <allure-testng.version>2.10.0</allure-testng.version>
+
+        <!-- TestNG settings -->
+        <!--suppress UnresolvedMavenProperty -->
+        <testng.test.suite>Suites/${suite}.xml</testng.test.suite>
+        <build.test.suite>Suites/current0.xml</build.test.suite>
+        <default.test.suite>Suites/common.xml</default.test.suite>
+
+        <!--jdk version-->
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
+        <plugin.maven.resource>3.1.0</plugin.maven.resource>
+        <plugin.maven.surefire>2.22.2</plugin.maven.surefire>
+        <!--Xmx1024m -XX:MaxPermSize=256m -->
+        <maven.surefire.argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+        </maven.surefire.argLine>
+
+        <!-- encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <rootdir>${basedir}</rootdir>
+        <common.config>${rootdir}/src/main/resources/common.properties</common.config>
+        <log4j.config>${rootdir}/src/main/resources/log4j2.properties</log4j.config>
+        <skipTests>false</skipTests>
+
+        <!--all versions:-->
+        <allure.version>2.13.8</allure.version>
+        <allure.maven.version>2.10.0</allure.maven.version>
+
+        <aspectj.version>1.9.6</aspectj.version>
+        <selenium.version>3.141.59</selenium.version>
+        <selenide.version>5.16.0</selenide.version>
+        <testng.version>7.3.0</testng.version>
+
+        <slf4j.jdk14.version>2.0.0-alpha1</slf4j.jdk14.version>
+        <log4j.version>2.14.0</log4j.version>
+        <jetbrains.annotations.version>17.0.0</jetbrains.annotations.version>
+
+        <java.version>1.8</java.version>
+        <xstream.version>1.4.11.1</xstream.version>
+
+        <joda.time.version>2.10.5</joda.time.version>
+
+
+    </properties>
+
+    <!--build mode selector-->
+    <profiles>
+
+        <profile>
+            <id>testrun</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${plugin.maven.surefire}</version>
+                        <configuration>
+                            <useSystemClassLoader>false</useSystemClassLoader>
+                            <argLine>${maven.surefire.argLine}</argLine>
+                            <systemPropertyVariables>
+                                <allure.results.directory>${rootdir}/allure-results</allure.results.directory>
+                            </systemPropertyVariables>
+                            <systemProperties>
+                                <property>
+                                    <name>environment.path</name>
+                                    <value>${rootdir}\allure-results\environment.properties</value>
+                                </property>
+                                <property>
+                                    <name>log4j.configurationFile</name>
+                                    <value>${log4j.config}</value>
+                                </property>
+                                <property>
+                                    <name>common.cfg</name>
+                                    <value>${common.config}</value>
+                                </property>
+                            </systemProperties>
+                            <properties>
+                                <property>
+                                    <name>browser</name>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <excludeDefaults>true</excludeDefaults>
+                <plugins>
+                    <plugin>
+                        <groupId>io.qameta.allure</groupId>
+                        <artifactId>allure-testng</artifactId>
+                        <version>${allure.version}</version>
+                        <configuration>
+                            <reportVersion>${allure.version}</reportVersion>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+
+        <profile>
+            <id>testdebug</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${plugin.maven.surefire}</version>
+                        <configuration>
+                            <useSystemClassLoader>false</useSystemClassLoader>
+                            <argLine>${maven.surefire.argLine}</argLine>
+                            <systemProperties>
+                                <property>
+                                    <name>allure.test-results.dir</name>
+                                    <value>${rootdir}/target/allure-results</value>
+                                </property>
+                                <!--> <allure.results.directory>${rootdir}/target/allure-results</allure.results.directory-->
+                                <property>
+                                    <name>log4j.configurationFile</name>
+                                    <value>${log4j.config}</value>
+                                </property>
+                                <property>
+                                    <name>environment.path</name>
+                                    <value>${rootdir}\target\allure-results\environment.properties</value>
+                                </property>
+                                <property>
+                                    <name>common.cfg</name>
+                                    <value>${common.config}</value>
+                                </property>
+                            </systemProperties>
+                            <properties>
+                                <property>
+                                    <name>browser</name>
+                                </property>
+                            </properties>
+                            <!-- testng*.xml path -->
+                            <suiteXmlFiles>
+                                <suiteXmlFile>${rootdir}/${default.test.suite}</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <excludeDefaults>true</excludeDefaults>
+                <plugins>
+                    <plugin>
+                        <groupId>io.qameta.allure</groupId>
+                        <artifactId>allure-testng</artifactId>
+                        <version>${allure.version}</version>
+                        <configuration>
+                            <reportVersion>${allure.version}</reportVersion>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+    </profiles>
+
+    <dependencies>
+    <!--https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+    <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectj.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>${allure.maven.version}</version>
+        <scope>test</scope>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-java-commons -->
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-java-commons</artifactId>
+        <version>${allure.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-testng</artifactId>
+        <version>${allure.version}</version>
+        <!--scope>test</scope-->
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-selenide -->
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-selenide</artifactId>
+        <version>${allure.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
+    <dependency>
+        <groupId>com.codeborne</groupId>
+        <artifactId>selenide</artifactId>
+        <version>${selenide.version}</version>
+    </dependency>
+
+    <!--Selenium-->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>${selenium.version}</version>
+    </dependency>
+
+    <!--TestNG-->
+    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>${testng.version}</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!--Logger -->
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${log4j.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-jdk14</artifactId>
+        <version>${slf4j.jdk14.version}</version>
+    </dependency>
+
+    <!--org.slf4j-->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.jdk14.version}</version>
+    </dependency>
+    <dependency>
+
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>${slf4j.jdk14.version}</version>
+    </dependency>
+    <!--org.slf4j-->
+
+    <!--Lib for XML-->
+    <dependency>
+        <groupId>com.thoughtworks.xstream</groupId>
+        <artifactId>xstream</artifactId>
+        <version>${xstream.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.jetbrains</groupId>
+        <artifactId>annotations</artifactId>
+        <version>${jetbrains.annotations.version}</version>
+        <scope>compile</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+    <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${plugin.maven.surefire}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.11</version>
+    </dependency>
+
+    </dependencies>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven.version}</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>
