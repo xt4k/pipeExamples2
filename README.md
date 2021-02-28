@@ -1,7 +1,7 @@
 # MobyMaxApplication - draft of automated testing APP via GUI  
 # Supported browsers:
 # - Google Chrome: 100%,
-# - Firefox: 80%   
+# - Firefox: 90% ( 2 test for registering students sometimes are fail).  
 # - Edge: 100% but tests execution duration increased up to 4 time. (21 vs 5 minutes)
 # Not supported browsers: IE, Opera.
 #
