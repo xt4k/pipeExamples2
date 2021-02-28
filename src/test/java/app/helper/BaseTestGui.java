@@ -63,9 +63,9 @@ public class BaseTestGui {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
 
-    @Parameters({ "browser", "timeout" })
+    @Parameters({ "browser", "timeout","headless" })
     @BeforeSuite(description = "Initial configuration before every TestSuite (Set System variables for test suite, open browser).", alwaysRun = true)
-    public void suiteSetup(@Optional("chrome") String setBrowser, @Optional("10000") String timeOut) {
+    public void suiteSetup(@Optional("chrome") String setBrowser, @Optional("10000") String timeOut, @Optional("true") String setHeadless) {
         String startTime = new CommonOperations().getAccurateTime();
         setProperty(("test.start.time"), startTime);
         reportInfo(format("Initial time:'%s'", startTime));
@@ -117,7 +117,7 @@ public class BaseTestGui {
 
         baseUrl = "http://" + getProperty("server.ip.addr");
 
-        headless = false;//true;//false;
+        headless = Boolean.parseBoolean(setHeadless);//false;//true;//false;
         open(baseUrl);
         fastSetValue = true;//default - false
         savePageSource = false;
