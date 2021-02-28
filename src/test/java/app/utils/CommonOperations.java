@@ -13,8 +13,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static app.pageobject.BasePageObject.reportInfo;
 import static com.codeborne.selenide.Configuration.*;
@@ -29,27 +27,14 @@ import static java.util.Optional.ofNullable;
 public class CommonOperations extends BaseTestGui {
     private static Random rand = new Random();
 
-    @Step("Convert timecard registration block Title (with violations messages):'{0}' into only violations text.")
-    public String convertTimecardBlockViolationsInTitle(String sElementTitleAll, String sPrefix, String sSuffix) {
-        String[] sViolatedTitleCutted1 = sElementTitleAll.split(sPrefix);
-        String[] sViolatedTitleCutted2 = sViolatedTitleCutted1[1].split(sSuffix);
-        String sViolationText = sViolatedTitleCutted2[0];//.toLowerCase();/// here changes
-        reportInfo(String.format("Title (with violations messages):'%s'=> only violation text:'%s'.", sElementTitleAll, sViolationText));
-        return sViolationText;
+    public String getRandomMultiDigitNumber(int counter) {
+        String randNum ="";
+        for (int i=1;i<=counter;i++)  randNum=randNum+(new Random().nextInt(10)); // step("randNum: " + randNum);
+        return randNum;
     }
 
-    @Step("Convert timecard registration block Title:'{0}' into string array.")
-    public String[] convertTimecardBlockTitleToStringArray(String elementTitleAll) {
-        String elementTitleAllmod = elementTitleAll
-                .replaceAll("<div>", ";")
-                .replaceAll("</div>", ";")
-                .replaceAll(": ", ";");//     System.out.println("elementTitleAll2: "+elementTitleAllmod);
-        elementTitleAllmod = elementTitleAllmod.replaceAll(";;", ";");// System.out.println("elementTitleAll2: "+elementTitleAllmod);
-        String[] titleBlocks = elementTitleAllmod.split(";");
-        reportInfo(String.format("String:'%s' converted into list:'%s'.", elementTitleAll, Arrays.toString(titleBlocks)));
 
-        return titleBlocks;
-    }
+
 
     // @Step("Returns random integer with top bound: '10^7+123456'")
     public int iGetRandomInt() {
@@ -70,17 +55,16 @@ public class CommonOperations extends BaseTestGui {
             String endTime = new CommonOperations().getAccurateTime(); // reportInfo("test.end.time: "+endTime);
             ofNullable(baseUrl).ifPresent(s -> props.setProperty("APP url", s));
             ofNullable(getProperty("os.name")).ifPresent(s -> props.setProperty("APP server OS", s));
-            ofNullable(getProperty("app.server.ip")).ifPresent(s -> props.setProperty("APP server ip", s));
+
             ofNullable(browserVersion).ifPresent(s -> props.setProperty("Browser", s));
             ofNullable(getProperty("db.name")).ifPresent(s -> props.setProperty("DB", s));
             ofNullable(getProperty("java.version")).ifPresent(s -> props.setProperty("Java version", s));
             // ofNullable(getProperty("webdriver.chrome.driver")).ifPresent(s -> props.setProperty("webdriver.chrome.driver", s));
-            ofNullable(getProperty("app.version")).ifPresent(s -> props.setProperty("APP version", s));
             ofNullable(getProperty("test.start.time")).ifPresent(s -> props.setProperty("Test started", s));
             props.setProperty("Test completed", endTime);
             ofNullable(headless).ifPresent(s -> props.setProperty("Browser headless mode", String.valueOf(s)));
             props.setProperty("Browser resolution", browserSize);
-            String sTestDuration = sGetDuration(getProperty("test.start.time"), endTime);
+            String sTestDuration = getDuration(getProperty("test.start.time"), endTime);
             ofNullable(sTestDuration).ifPresent(s -> props.setProperty("Test duration (HH:MM:SS)", s));
             reportInfo("environment.path: " + getProperty("environment.path"));
             //fos = new FileOutputStream(getProperty("environment.out.path"));
@@ -95,7 +79,7 @@ public class CommonOperations extends BaseTestGui {
         }*/
     }
 
-    private String sGetDuration(String sStartTime, String sEndTime) {
+    private String getDuration(String sStartTime, String sEndTime) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy HH:mm:ss");
         String sDuration = null;
         try {
@@ -118,90 +102,6 @@ public class CommonOperations extends BaseTestGui {
         return sDuration;
     }
 
-    @Step("Convert String 'ddMMyyyy'': '{0}' into 'yyyy-MM-dd'.")
-    String sConvertStringDDMMYYYYtoYYYY_MM_DD(String sInitialDate) {
-        DateTimeFormatter dtfFormatter1 = ofPattern("ddMMyyyy");
-        DateTimeFormatter dtfFormatter2 = ofPattern(sSqlDate);        //System.out.println(LocalDate.parse(sInitialDate, dtfFormatter1).format(dtfFormatter2));
-        // reportInfo(String.format("initial string: %s, dtfFormatter1 1:'%s', dtfFormatter1 2:'%s' ", sInitialDate, dtfFormatter1, dtfFormatter2));
-        String sDateString = parse(sInitialDate, dtfFormatter1).format(dtfFormatter2);        //System.out.println("formatted date:" + sDateString);
-        reportInfo(String.format("String: In:'%s' => Out:'%s'.", sInitialDate, sDateString));
-        return sDateString;
-    }
-
-    @Step("Convert String 'Time': '{0}' from 'HHMMSS' into 'HH:MM:SS' string.")
-    String sConvertStringHHMMtoHH_MM_SS(String sTime) {
-        String modifiedTime = sTime.substring(0, 2) + ":" + sTime.substring(2, 4) + ":" + sTime.substring(4);
-        reportInfo("Return Time string (HH:MM:SS): " + modifiedTime);
-        return modifiedTime;
-    }
-
-    @Step("Convert String 'Time' {0} from 'HHMM' into 'HH:MM' string.")
-    String sConvertStringHHMMtoHH_MM(String sTime) {
-        String modifiedTime = sTime.substring(0, 2) + ":" + sTime.substring(2);
-        reportInfo("Return Time string (HH:MM): " + modifiedTime);
-        return modifiedTime;
-    }
-
-    @Step("Convert String 'ddMMyyyy': '{0}' into 'LocalDate' object 'yyyy-MM-dd'")
-    public LocalDate ldConvertStringToDateYYYY_MM_DD(String sDate) {
-        DateTimeFormatter formatter = ofPattern("ddMMyyyy");
-        DateTimeFormatter formatter2 = ofPattern(sSqlDate);
-        LocalDate convertedLocalDate = parse(parse(sDate, formatter).format(formatter2));
-        reportInfo("Return Date LocalDate (yyyy-MM-dd): " + convertedLocalDate);    //System.out.println(LocalDate.parse(sDate, formatter).format(formatter2));
-        return convertedLocalDate;
-    }
-
-    @Step("Convert String 'ddMMyyyy' {0} into 'LocalDate' object (atomic).")
-    public LocalDate ldConvertStringDDMMyyyyToLocalDate(String initialDate) {
-        DateTimeFormatter formatter = ofPattern("ddMMyyyy");
-        LocalDate localDate = LocalDate.parse(initialDate, formatter);
-        reportInfo(format("String 'Date':'%s' converted  into 'LocalDate': '%s'", initialDate, localDate));// System.out.println("initialDate: " + initialDate);
-        return localDate;
-    }
-
-    @Step("Convert String 'Date' {0}  into 'LocalDate' object.")
-    public LocalDate convertStringDD_MM_yyyyToLocalDate(String initialDate) {
-        DateTimeFormatter formatter = ofPattern(sUiDateShort);
-        LocalDate localDate = LocalDate.parse(initialDate, formatter);
-        reportInfo(format("String 'Date':'%s' converted  into 'LocalDate': '%s'", initialDate, localDate));// System.out.println("initialDate: " + initialDate);
-        return localDate;
-    }
-
-    @Step("Convert 'timeblock hint title': '{0}' (excluding tag:'{1}' by splitter:'{2}') into returned string array.")
-    public String[] convertSoleWorkTypeTimeBlockHintToArray(String sHint, String sTag, String sSplitter) {
-        //soleWorkTypeTimeBlockHint = getSoleWorkTypeTimeBlockHint(); //String sHint = soleWorkTypeTimeBlockHint.getAttribute("title");
-        String sTitleWorktypeAndTimePoints = null;
-        String patternString = "<" + sTag + ">(.*?)</" + sTag + ">";
-        Pattern pattern = Pattern.compile(patternString);//"<div>(.*?)</div>");
-        Matcher m = pattern.matcher(sHint);
-        if (m.find()) {
-            sTitleWorktypeAndTimePoints = m.group(1);
-        }
-        assert sTitleWorktypeAndTimePoints != null;
-        String[] aStrings = sTitleWorktypeAndTimePoints.split(sSplitter);//": |-");
-        reportInfo(format("Worktype timeblock sHint:  HTML text: '%s'.\n it first string: '%s' converted into array: '%s'.",
-                sHint, sTitleWorktypeAndTimePoints, Arrays.toString(aStrings)));
-        return aStrings;
-    }
-
-
-    @Step("Generate unique time-based index (atomic).")
-    public String sGetFlagEvenOrOdd(String sNumberIndex) {
-        int iNumberIndex = Integer.parseInt(sNumberIndex);
-        String sResult;
-        if (iNumberIndex % 2 == 0)
-            sResult = "E";//even
-        else
-            sResult = "O";//odd
-        return sResult;
-    }
-
- /*   // @Step("Get `6-Digit` unique day-time index.")
-    public String sGetUnique6digitTimeIndex() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-        String sIndex = formatter.format(new Date());//        step("Set unique day-time index: " + sIndex);
-        return sIndex;
-    }*/
 
     // @Step("Get `6-Digit` unique day-time index.")
     public String sGetUnique6digitTimeIndex() {
@@ -213,90 +113,6 @@ public class CommonOperations extends BaseTestGui {
         //step("Unique 9 digit time-index: " + sIndex);
         return sIndex;
     }
-
-
-    public int iGetUnique6digitTimeIndex() {
-        int iIndex = Integer.parseInt(sGetUnique6digitTimeIndex());//        step("Set unique day-time index: " + iIndex);
-        return iIndex;
-    }
-/*
-
-    public String sGetUnique7digitTimeIndex() {
-        long lMilliSeconds = new Date().getTime();//   step("milliseconds:"+lMilliSeconds);
-        String sMilliseconds = String.valueOf(lMilliSeconds);
-        String sNds = sMilliseconds.substring(sMilliseconds.length() - 3);
-        String sIndex = new SimpleDateFormat("HHmm").format(new Date()) + sNds;
-        //------------------------------------
-        //step("Unique 9 digit time-index: " + sIndex);
-        return sIndex;
-    }
-*/
-
-
-    public String sGetUnique7digitTimeIndex() {
-        String sIndex = String.valueOf(new Random().nextInt(9999999));
-        step("Index: " + sIndex);
-        return sIndex;
-    }
-
-
-    public String sGetRandomMultiDigitNumber(int counter) {
-        String randNum ="";
-        for (int i=1;i<=counter;i++)  randNum=randNum+(new Random().nextInt(10)); // step("randNum: " + randNum);
-        return randNum;
-    }
-
-
-
-    public String sGetUnique8digitTimeIndex() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-        // String sIndex = formatter.format(new Date());//.substring(0,8);
-        //-----------------------------------------
-        //  Instant inst = Instant.now();
-        long lMilliSeconds = new Date().getTime();//   step("milliseconds:"+lMilliSeconds);
-        String sMilliseconds = String.valueOf(lMilliSeconds);
-        String sNds = sMilliseconds.substring(sMilliseconds.length() - 2);
-        String sIndex = formatter.format(new Date()) + sNds;
-        //------------------------------------
-        //step("Unique 9 digit time-index: " + sIndex);
-        return sIndex;
-    }
-
-
-    // @Step("Get `7-Digit` unique day-time index.")
-    public String sGetUnique9digitTimeIndex2() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-        long lMilliSeconds = new Date().getTime();//   step("milliseconds:"+lMilliSeconds);
-        String sMilliseconds = String.valueOf(lMilliSeconds);
-        String sNds = sMilliseconds.substring(sMilliseconds.length() - 3);
-        String sIndex = formatter.format(new Date()) + sNds;
-        //------------------------------------
-        //step("Unique 9 digit time-index: " + sIndex);
-        return sIndex;
-    }
-
-
-    public String sGetUnique9digitTimeIndex() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HHmmss");
-
-        String random3digit = (new Random().nextInt(10)) + String.valueOf(new Random().nextInt(10)) + new Random().nextInt(10);
-        String timeIndex = formatter.format(new Date());
-        String randomIndex = timeIndex + random3digit;
-        //step(String.format("Generated random 9 digit number: %s (time: %s, random: %s).", randomIndex, timeIndex, random3digit));
-        return randomIndex;
-    }
-
-  /*  @Step("Get 10 digit time index.")
-    public int sGetRandom10DigitTimeIndex() {
-        SimpleDateFormat formatter = new SimpleDateFormat("HHmmssSSS");
-        long lo = LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli();
-        String sMilliseconds = String.valueOf(lo);
-        String sNds = sMilliseconds.substring(sMilliseconds.length()-3);
-        String sIndex = formatter.format(new Date());
-        int iIndex = Integer.parseInt(sIndex);
-        reportInfo(getMethodName() + ": " + sIndex);
-        return iIndex;
-    }*/
 
 
     @Step("Get precious time.")
@@ -480,7 +296,7 @@ public class CommonOperations extends BaseTestGui {
 
     @Step("Get time (according:`sSqlDateTimeLong`).")
     public String sGetDateTime() {
-        SimpleDateFormat formatter = new SimpleDateFormat(sSqlDateTimeLong);
+        SimpleDateFormat formatter = new SimpleDateFormat(sqlDateTimeLong);
         String sTime = formatter.format(new Date());
         reportInfo(getMethodName() + " returns: " + sTime);
         return sTime;
@@ -506,9 +322,9 @@ public class CommonOperations extends BaseTestGui {
 
     //@Step("Get random date in period:`{0}--{1}`.")
     public LocalDate ldGetRandomLocalDate(String sMinDate, String sMaxDate) {
-        LocalDate ldStart = ldStringToLocalDate(sMinDate, sSqlDate);
+        LocalDate ldStart = ldStringToLocalDate(sMinDate, sqlDate);
         long lStart = ldStart.toEpochDay();
-        LocalDate ldEnd = ldStringToLocalDate(sMaxDate, sSqlDate);
+        LocalDate ldEnd = ldStringToLocalDate(sMaxDate, sqlDate);
         long lEnd = ldEnd.toEpochDay();
         long lDuration = lEnd - lStart;
         int iPeriod = Integer.parseInt(String.valueOf(lDuration));

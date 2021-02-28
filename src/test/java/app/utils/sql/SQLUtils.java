@@ -1,24 +1,16 @@
 package app.utils.sql;
 
 import app.helper.BaseTestGui;
-import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.Executors;
 
-import static app.helper.BaseTestGui.sSqlDate;
-import static app.helper.BaseTestGui.sSqlDateTimeShort;
 import static app.pageobject.BasePageObject.reportInfo;
 import static io.qameta.allure.Allure.step;
-import static java.lang.Boolean.parseBoolean;
 import static java.lang.Integer.parseInt;
 import static java.lang.System.getProperty;
-import static java.lang.System.out;
 
 public class SQLUtils extends BaseTestGui {
     private static String connectionString = getProperty("sql.db.connection.string");

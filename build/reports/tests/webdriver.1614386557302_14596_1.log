@@ -1,0 +1,8 @@
+1614386557805	geckodriver	INFO	Listening on 127.0.0.1:14112
+1614386558791	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\yuriy\\AppData\\Local\\Temp\\rust_mozprofilemQDd3I"
+*** You are running in headless mode.
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1614386573899	Marionette	INFO	Listening on port 63084
+1614386574106	Marionette	WARN	TLS certificate errors will be ignored for this session
+Unable to read VR Path Registry from C:\Users\yuriy\AppData\Local\openvr\openvrpaths.vrpath
+1614386579960	Marionette	INFO	Stopped listening on port 63084

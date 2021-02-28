@@ -1,0 +1,282 @@
+[1614376268.358][INFO]: Starting ChromeDriver 88.0.4324.96 (68dba2d8a0b149a1d3afac56fa74648032bcf46b-refs/branch-heads/4324@{#1784}) on port 29950
+[1614376268.358][INFO]: Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1614376269.356][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND InitSession {
+   "capabilities": {
+      "firstMatch": [ {
+         "acceptInsecureCerts": true,
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [ "--headless", "--disable-gpu", "--proxy-bypass-list=\u003C-loopback>", "--disable-dev-shm-usage", "--no-sandbox" ],
+            "excludeSwitches": [ "enable-automation", "load-extension" ],
+            "extensions": [  ],
+            "prefs": {
+               "credentials_enable_service": false,
+               "download.default_directory": "C:\\Users\\yuriy\\IdeaProjects\\MobyMaxApplication\\build\\downloads\\1614376267351_18840_1",
+               "plugins.always_open_pdf_externally": true,
+               "profile.default_content_setting_values.automatic_downloads": 1
+            }
+         },
+         "pageLoadStrategy": "normal"
+      } ]
+   },
+   "desiredCapabilities": {
+      "acceptInsecureCerts": true,
+      "acceptSslCerts": true,
+      "browserName": "chrome",
+      "goog:chromeOptions": {
+         "args": [ "--headless", "--disable-gpu", "--proxy-bypass-list=\u003C-loopback>", "--disable-dev-shm-usage", "--no-sandbox" ],
+         "excludeSwitches": [ "enable-automation", "load-extension" ],
+         "extensions": [  ],
+         "prefs": {
+            "credentials_enable_service": false,
+            "download.default_directory": "C:\\Users\\yuriy\\IdeaProjects\\MobyMaxApplication\\build\\downloads\\1614376267351_18840_1",
+            "plugins.always_open_pdf_externally": true,
+            "profile.default_content_setting_values.automatic_downloads": 1
+         }
+      },
+      "handlesAlerts": true,
+      "javascriptEnabled": true,
+      "pageLoadStrategy": "normal",
+      "takesScreenshot": true
+   }
+}
+[1614376269.360][INFO]: Populating Preferences file: {
+   "alternate_error_pages": {
+      "enabled": false
+   },
+   "autofill": {
+      "enabled": false
+   },
+   "browser": {
+      "check_default_browser": false
+   },
+   "credentials_enable_service": false,
+   "distribution": {
+      "import_bookmarks": false,
+      "import_history": false,
+      "import_search_engine": false,
+      "make_chrome_default_for_user": false,
+      "skip_first_run_ui": true
+   },
+   "dns_prefetching": {
+      "enabled": false
+   },
+   "download": {
+      "default_directory": "C:\\Users\\yuriy\\IdeaProjects\\MobyMaxApplication\\build\\downloads\\1614376267351_18840_1"
+   },
+   "plugins": {
+      "always_open_pdf_externally": true
+   },
+   "profile": {
+      "content_settings": {
+         "pattern_pairs": {
+            "https://*,*": {
+               "media-stream": {
+                  "audio": "Default",
+                  "video": "Default"
+               }
+            }
+         }
+      },
+      "default_content_setting_values": {
+         "automatic_downloads": 1,
+         "geolocation": 1
+      },
+      "default_content_settings": {
+         "geolocation": 1,
+         "mouselock": 1,
+         "notifications": 1,
+         "popups": 1,
+         "ppapi-broker": 1
+      },
+      "password_manager_enabled": false
+   },
+   "safebrowsing": {
+      "enabled": false
+   },
+   "search": {
+      "suggest_enabled": false
+   },
+   "translate": {
+      "enabled": false
+   }
+}
+[1614376269.361][INFO]: Populating Local State file: {
+   "background_mode": {
+      "enabled": false
+   },
+   "ssl": {
+      "rev_checking": {
+         "enabled": false
+      }
+   }
+}
+[1614376269.364][INFO]: Launching chrome: "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-background-networking --disable-backgrounding-occluded-windows --disable-client-side-phishing-detection --disable-default-apps --disable-dev-shm-usage --disable-gpu --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-blink-features=ShadowDOMV0 --enable-logging --headless --ignore-certificate-errors --log-level=0 --no-first-run --no-sandbox --no-service-autorun --password-store=basic --proxy-bypass-list=<-loopback> --remote-debugging-port=0 --test-type=webdriver --use-mock-keychain --user-data-dir="C:\Users\yuriy\AppData\Local\Temp\scoped_dir15348_825038413" data:,
+[1614376269.902][INFO]: resolved localhost to ["::1","127.0.0.1"]
+[1614376269.909][INFO]: resolved localhost to ["::1","127.0.0.1"]
+[1614376269.922][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE InitSession {
+   "capabilities": {
+      "acceptInsecureCerts": true,
+      "browserName": "chrome",
+      "browserVersion": "88.0.4324.190",
+      "chrome": {
+         "chromedriverVersion": "88.0.4324.96 (68dba2d8a0b149a1d3afac56fa74648032bcf46b-refs/branch-heads/4324@{#1784})",
+         "userDataDir": "C:\\Users\\yuriy\\AppData\\Local\\Temp\\scoped_dir15348_825038413"
+      },
+      "goog:chromeOptions": {
+         "debuggerAddress": "localhost:52281"
+      },
+      "networkConnectionEnabled": false,
+      "pageLoadStrategy": "normal",
+      "platformName": "windows",
+      "proxy": {
+
+      },
+      "setWindowRect": true,
+      "strictFileInteractability": false,
+      "timeouts": {
+         "implicit": 0,
+         "pageLoad": 300000,
+         "script": 30000
+      },
+      "unhandledPromptBehavior": "dismiss and notify",
+      "webauthn:extension:largeBlob": true,
+      "webauthn:virtualAuthenticators": true
+   },
+   "sessionId": "f45e7d9854403aa3be87d009df9071c8"
+}
+[1614376270.036][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND SetWindowRect {
+   "height": 1080,
+   "width": 1920
+}
+[1614376270.036][INFO]: Waiting for pending navigations...
+[1614376270.039][INFO]: Done waiting for pending navigations. Status: ok
+[1614376270.142][INFO]: Waiting for pending navigations...
+[1614376270.143][INFO]: Done waiting for pending navigations. Status: ok
+[1614376270.143][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE SetWindowRect {
+   "height": 1080,
+   "width": 1920,
+   "x": 0,
+   "y": 0
+}
+[1614376270.151][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND SetTimeouts {
+   "pageLoad": 30000
+}
+[1614376270.151][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE SetTimeouts
+[1614376270.166][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Navigate {
+   "url": "http://www.mobymax.com"
+}
+[1614376270.166][INFO]: Waiting for pending navigations...
+[1614376270.167][INFO]: Done waiting for pending navigations. Status: ok
+[1614376271.788][INFO]: Waiting for pending navigations...
+[1614376273.771][INFO]: Done waiting for pending navigations. Status: ok
+[1614376273.771][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Navigate
+[1614376273.782][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND GetLog {
+   "type": "browser"
+}
+[1614376273.783][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE GetLog [  ]
+[1614376273.927][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND GetLog {
+   "type": "browser"
+}
+[1614376273.973][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE GetLog [  ]
+[1614376274.617][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Refresh {
+
+}
+[1614376274.617][INFO]: Waiting for pending navigations...
+[1614376274.618][INFO]: Done waiting for pending navigations. Status: ok
+[1614376274.621][INFO]: Waiting for pending navigations...
+[1614376275.991][INFO]: Done waiting for pending navigations. Status: ok
+[1614376275.991][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Refresh
+[1614376276.013][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND ExecuteScript {
+   "args": [  ],
+   "script": "return (document.readyState == 'complete' && jQuery.active == 0)"
+}
+[1614376276.013][INFO]: Waiting for pending navigations...
+[1614376276.014][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.017][INFO]: Waiting for pending navigations...
+[1614376276.018][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.018][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE ExecuteScript true
+[1614376276.024][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Screenshot {
+
+}
+[1614376276.024][INFO]: Waiting for pending navigations...
+[1614376276.025][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.371][INFO]: Waiting for pending navigations...
+[1614376276.372][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.372][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Screenshot "iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAAAXNSR0IArs4c6QAAIABJREFUeJzs3XlcVOX+B/DPDDAMyzDsIKCAgChuiBqYieaGYkkLtJi3ROuqWVm3XOrevPdn91Zq3q43rbyVWtl2pbpqLpiamprkhvuKoAjKvsPMsMzvj3GODOcMm+Agft6v1..."
+[1614376276.457][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Screenshot {
+
+}
+[1614376276.457][INFO]: Waiting for pending navigations...
+[1614376276.458][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.793][INFO]: Waiting for pending navigations...
+[1614376276.794][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.794][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Screenshot "iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAAAXNSR0IArs4c6QAAIABJREFUeJzs3XlcVOX+B/DPDDAMyzDsIKCAgChuiBqYieaGYkkLtJi3ROuqWVm3XOrevPdn91Zq3q43rbyVWtl2pbpqLpiamprkhvuKoAjKvsPMsMzvj3GODOcMm+Agft6v1..."
+[1614376276.917][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND FindElement {
+   "using": "css selector",
+   "value": "#bottle"
+}
+[1614376276.917][INFO]: Waiting for pending navigations...
+[1614376276.918][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.929][INFO]: Waiting for pending navigations...
+[1614376276.929][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.929][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE FindElement ERROR no such element: Unable to locate element: {"method":"css selector","selector":"#bottle"}
+  (Session info: headless chrome=88.0.4324.190)
+[1614376276.945][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND FindElement {
+   "using": "css selector",
+   "value": "#bottle"
+}
+[1614376276.945][INFO]: Waiting for pending navigations...
+[1614376276.946][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.952][INFO]: Waiting for pending navigations...
+[1614376276.952][INFO]: Done waiting for pending navigations. Status: ok
+[1614376276.952][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE FindElement ERROR no such element: Unable to locate element: {"method":"css selector","selector":"#bottle"}
+  (Session info: headless chrome=88.0.4324.190)
+[1614376276.958][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Screenshot {
+
+}
+[1614376276.958][INFO]: Waiting for pending navigations...
+[1614376276.959][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.312][INFO]: Waiting for pending navigations...
+[1614376277.313][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.313][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Screenshot "iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAAAXNSR0IArs4c6QAAIABJREFUeJzs3XlcVOX+B/DPDDAMyzDsIKCAgChuiBqYieaGYkkLtJi3ROuqWVm3XOrevPdn91Zq3q43rbyVWtl2pbpqLpiamprkhvuKoAjKvsPMsMzvj3GODOcMm+Agft6v1..."
+[1614376277.351][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Screenshot {
+
+}
+[1614376277.351][INFO]: Waiting for pending navigations...
+[1614376277.352][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.684][INFO]: Waiting for pending navigations...
+[1614376277.685][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.686][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Screenshot "iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAAAXNSR0IArs4c6QAAIABJREFUeJzs3XlcVOX+B/DPDDAMyzDsIKCAgChuiBqYieaGYkkLtJi3ROuqWVm3XOrevPdn91Zq3q43rbyVWtl2pbpqLpiamprkhvuKoAjKvsPMsMzvj3GODOcMm+Agft6v1..."
+[1614376277.849][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND FindElement {
+   "using": "css selector",
+   "value": "#logOffLink"
+}
+[1614376277.849][INFO]: Waiting for pending navigations...
+[1614376277.850][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.860][INFO]: Waiting for pending navigations...
+[1614376277.860][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.860][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE FindElement ERROR no such element: Unable to locate element: {"method":"css selector","selector":"#logOffLink"}
+  (Session info: headless chrome=88.0.4324.190)
+[1614376277.866][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND FindElement {
+   "using": "css selector",
+   "value": "#login\\-form"
+}
+[1614376277.866][INFO]: Waiting for pending navigations...
+[1614376277.866][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.874][INFO]: Waiting for pending navigations...
+[1614376277.875][INFO]: Done waiting for pending navigations. Status: ok
+[1614376277.875][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE FindElement ERROR no such element: Unable to locate element: {"method":"css selector","selector":"#login\-form"}
+  (Session info: headless chrome=88.0.4324.190)
+[1614376277.879][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Screenshot {
+
+}
+[1614376277.879][INFO]: Waiting for pending navigations...
+[1614376277.880][INFO]: Done waiting for pending navigations. Status: ok
+[1614376278.234][INFO]: Waiting for pending navigations...
+[1614376278.235][INFO]: Done waiting for pending navigations. Status: ok
+[1614376278.235][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Screenshot "iVBORw0KGgoAAAANSUhEUgAAB4AAAAQ4CAYAAADo08FDAAAAAXNSR0IArs4c6QAAIABJREFUeJzs3XlcVOX+B/DPDDAMyzDsIKCAgChuiBqYieaGYkkLtJi3ROuqWVm3XOrevPdn91Zq3q43rbyVWtl2pbpqLpiamprkhvuKoAjKvsPMsMzvj3GODOcMm+Agft6v1..."
+[1614376278.513][INFO]: [f45e7d9854403aa3be87d009df9071c8] COMMAND Quit {
+
+}
+[1614376278.532][INFO]: [f45e7d9854403aa3be87d009df9071c8] RESPONSE Quit

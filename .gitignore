@@ -1,0 +1,8 @@
+*.iml
+tmp.txt
+/out/
+target/*
+/.idea/
+allure-results/*
+build/
+*.err

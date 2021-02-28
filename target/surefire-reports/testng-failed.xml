@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [AutoTestSuite_1]">
+  <parameter name="timeout" value="10000"/>
+  <test thread-count="5" verbose="0" name="Teacher: Testsets for teacher.(failed)">
+    <classes>
+      <class name="app.tests.teacher.RegisterTests">
+        <methods>
+          <include name="preTest"/>
+          <include name="afterTest"/>
+          <include name="preTestset"/>
+          <include name="postTestSet"/>
+          <include name="logTestStart"/>
+          <include name="test11teacherRegister"/>
+          <include name="test12teacherRegister"/>
+          <include name="suiteSetup"/>
+          <include name="testSuiteDown"/>
+          <include name="test10teacherRegister"/>
+        </methods>
+      </class> <!-- app.tests.teacher.RegisterTests -->
+    </classes>
+  </test> <!-- Teacher: Testsets for teacher.(failed) -->
+</suite> <!-- Failed suite [AutoTestSuite_1] -->
