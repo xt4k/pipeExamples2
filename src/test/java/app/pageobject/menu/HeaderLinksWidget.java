@@ -24,7 +24,7 @@ public class HeaderLinksWidget extends BasePageObject {
             default:
                 fail("Not defined linkItem");
         }
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
     }
 }
 

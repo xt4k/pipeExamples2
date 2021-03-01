@@ -19,11 +19,12 @@ public class RosterPageObject extends BasePageObject {
     @Step("Register student.")
     public void register() {
         seRegisterStudents.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
     }
 
     @Step("Check registered student by Name (First and Last).")
     public void checkStudent(Student student) {
         seStudentName.shouldHave(exactText(student.getFirstName()+" "+student.getLastName()));
+        attachPageScreenShot(getMethodName());
     }
 }

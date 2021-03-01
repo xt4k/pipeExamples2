@@ -35,15 +35,14 @@ public class StudentRegisterGridWidget extends BasePageObject {
         setTextToGridCell(se.preceding(3), student.getLastName());
         setTextToGridCell(se.preceding(4), student.getFirstName());
 
-        infoShot(getMethodName() + 99);
+        attachPageScreenShot(getMethodName() + 99);
         return new StudentRegisterGridWidget();
     }
 
     @Step("Submit student to first datagrid row")
     public StudentRegisterGridWidget submit(Student student, int row) {
         SelenideElement seGridRow =seHeaderRow.sibling(row-1);
-
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         se = seGridRow.lastChild();
         setTextToGridCell(se, student.getStudentId());
         setTextToGridCell(se.preceding(0), student.getPassword());
@@ -52,7 +51,7 @@ public class StudentRegisterGridWidget extends BasePageObject {
         setTextToGridCell(se.preceding(3), student.getLastName());
         setTextToGridCell(se.preceding(4), student.getFirstName());
 
-        infoShot(getMethodName() + 99);
+        attachPageScreenShot(getMethodName() + row+" done");
         return new StudentRegisterGridWidget();
     }
 
@@ -63,30 +62,30 @@ public class StudentRegisterGridWidget extends BasePageObject {
         Selenide.sleep(5000);
         if (seCheckBoxAllStudents.exists()) result = true;
 
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return result;
     }
 
     @Step("Select All Students")
     public StudentRegisterGridWidget select() {
         seCheckBoxAllStudents.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return new StudentRegisterGridWidget();
     }
 
     @Step("Operations with selected students list")
     public void doStudents(String operation) {
         se = ecButton.findBy(text(operation));
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         se.click();
     }
 
     @Step("Operations with selected students list")
     public StudentRegisterGridWidget doAction(String action) {
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         se = ecGridButtons.findBy(text(action));
         se.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return new StudentRegisterGridWidget();
 
     }

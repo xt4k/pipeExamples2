@@ -19,7 +19,7 @@ public class HeaderSubMenuWidget extends BasePageObject {
     public SignInForm selectLink(String linkItem) {
         SelenideElement se = ecLinkItems.findBy(text(linkItem));
         se.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return new SignInForm();
     }
 }

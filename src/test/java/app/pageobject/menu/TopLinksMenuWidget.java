@@ -17,7 +17,7 @@ public class TopLinksMenuWidget extends BasePageObject {
     @Step("Click Sign In")
     public SignInForm signIn() {
         seSignIn.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());//infoShot
         return new SignInForm();
     }
 }

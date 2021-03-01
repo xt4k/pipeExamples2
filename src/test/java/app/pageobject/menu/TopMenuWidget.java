@@ -25,7 +25,7 @@ public class TopMenuWidget extends BasePageObject {
             default:
                 fail("Not defined menuItem");
         }
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
     }
 
 }

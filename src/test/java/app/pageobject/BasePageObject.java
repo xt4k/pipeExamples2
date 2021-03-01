@@ -82,11 +82,11 @@ public class BasePageObject {
 
     @Step("Set text to Grid cell.")
     protected void setTextToGridCell(SelenideElement se, String text) {
-        infoShot(getMethodName()+1);
+        attachPageScreenShot(getMethodName()+1);
         se.doubleClick()
                 .$x("input")
                 .sendKeys(text+ Keys.ENTER);
-        infoShot(getMethodName()+9);
+        attachPageScreenShot(getMethodName()+9);
     }
 
     @Step("Check Error message.")
@@ -94,7 +94,7 @@ public class BasePageObject {
         seErrorMsg.shouldBe(exist)
                 .shouldBe(visible)
                 .shouldHave(text(errorMsg));
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
     }
 
 }

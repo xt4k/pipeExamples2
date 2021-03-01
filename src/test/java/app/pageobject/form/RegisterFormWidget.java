@@ -35,14 +35,14 @@ public class RegisterFormWidget extends BasePageObject {
        // seSchoolList.shouldBe(exist).shouldBe(visible);
         se = seRegisterForm.$x(format(xPathSchool, school));
         se.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return new RegisterFormWidget();
     }
 
     @Step("Set school for failed cases.")
     public RegisterFormWidget setSchool(String school) {
         seSchool.setValue(school);
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return new RegisterFormWidget();
     }
 
@@ -50,6 +50,6 @@ public class RegisterFormWidget extends BasePageObject {
     public void register() {
         seRegister.click();
         waitForLoaded();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
     }
 }

@@ -19,7 +19,7 @@ public class MyAccountPageObject extends BasePageObject {
 
     @Step("Teacher's data verification")
     public MyAccountPageObject checkTeacherInfo(Teacher teacher) {
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         seFname.shouldHave(value(teacher.getFirstName()));
         seLname.shouldHave(value(teacher.getLastName()));
         seEmail.shouldHave(value(teacher.getEmail()));

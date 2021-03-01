@@ -17,6 +17,6 @@ public class LeftMainMenuWidget extends BasePageObject {
     public void selectMenuItem(String link) {
         se = ecMenuLinks.findBy(Condition.text(link));
         se.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
     }
 }

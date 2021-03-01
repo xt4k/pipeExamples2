@@ -16,6 +16,6 @@ public class ConfirmationPopUpWidget extends BasePageObject {
     @Step("Select `{0}` on confirmation popup.")
     public void select(String select) {
         ecButtons.findBy(text(select)).click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
     }
 }

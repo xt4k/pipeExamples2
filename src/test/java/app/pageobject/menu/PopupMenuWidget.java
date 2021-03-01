@@ -19,7 +19,7 @@ public class PopupMenuWidget extends BasePageObject {
     @Step("Select `...` popup menu item:`{0}`.")
     public PopupMenuWidget selectMenuItem(String menuItem) {
         ecMenuItems.findBy(text(menuItem)).click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return new PopupMenuWidget();
     }
 
@@ -29,7 +29,7 @@ public class PopupMenuWidget extends BasePageObject {
     public SignInForm selectLink(String linkItem) {
         SelenideElement se = ecLinkItems.findBy(text(linkItem));
         se.click();
-        infoShot(getMethodName());
+        attachPageScreenShot(getMethodName());
         return new SignInForm();
     }
 }
