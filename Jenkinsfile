@@ -25,7 +25,7 @@ pipeline {
             
         stage ("send notif to telegram") {
             steps {
-            telegramSend(message: "BUILD_TAG: ${BUILD_TAG} completed "", chatId: -1001424392176)
+            telegramSend(message: "BUILD_TAG: ${BUILD_TAG} completed", chatId: -1001424392176)
         }
     }
 }
