@@ -7,8 +7,6 @@
     <test name="Teacher: Testsets for teacher.">
         <classes>
             <class name="app.tests.teacher.RegisterTests"/>
-            <class name="app.tests.teacher.LoginTests"/>
-            <class name="app.tests.teacher.StudentRegisterTests"/>
         </classes>
     </test>
 </suite>

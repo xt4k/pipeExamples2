@@ -1,8 +1,7 @@
-*.iml
-tmp.txt
-/out/
-target/*
+# Project exclude paths
 /.idea/
-allure-results/*
-build/
-*.err
+/.gradle/
+/build/
+/build/classes/java/test/
+# Project exclude paths
+/target/

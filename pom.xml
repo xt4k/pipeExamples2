@@ -4,41 +4,27 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>MobyMaxApplication</groupId>
-    <artifactId>MobyMaxApplication</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>MobyMax</name>
+    <groupId>pipeExamples</groupId>
+    <artifactId>pipeExamples</artifactId>
+    <version>1.2-SNAPSHOT</version>
+    <name>pipeExamples</name>
 
-
-    <distributionManagement>
-        <repository>
-            <id>internal.repo</id>
-            <name>Internal repo</name>
-            <url>${basedir}\target</url>
-        </repository>
-    </distributionManagement>
 
     <properties>
-
         <allure-testng.version>2.10.0</allure-testng.version>
-
         <!-- TestNG settings -->
         <!--suppress UnresolvedMavenProperty -->
         <testng.test.suite>Suites/${suite}.xml</testng.test.suite>
         <default.test.suite>Suites/common.xml</default.test.suite>
-
         <!--jdk version-->
-
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <plugin.maven.resource>3.1.0</plugin.maven.resource>
         <plugin.maven.surefire>2.22.2</plugin.maven.surefire>
-        <!--Xmx1024m -XX:MaxPermSize=256m -->
         <maven.surefire.argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
         </maven.surefire.argLine>
-
         <!-- encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -51,95 +37,72 @@
         <skipTests>false</skipTests>
 
         <!--all versions:-->
-        <allure.version>2.13.8</allure.version>
+        <allure.version>2.13.9</allure.version>
         <allure.maven.version>2.10.0</allure.maven.version>
 
         <aspectj.version>1.9.6</aspectj.version>
         <selenium.version>3.141.59</selenium.version>
-        <selenide.version>5.16.0</selenide.version>
+        <selenide.version>5.20.1</selenide.version>
         <testng.version>7.1.0</testng.version>
 
         <slf4j.jdk14.version>2.0.0-alpha1</slf4j.jdk14.version>
         <log4j.version>2.14.0</log4j.version>
         <jetbrains.annotations.version>17.0.0</jetbrains.annotations.version>
-
         <java.version>1.8</java.version>
         <xstream.version>1.4.11.1</xstream.version>
-
         <joda.time.version>2.10.5</joda.time.version>
 
     </properties>
 
-    <profiles>
-        <profile>
-            <id>testdebug</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>${plugin.maven.surefire}</version>
-                        <configuration>
-                            <useSystemClassLoader>false</useSystemClassLoader>
-                            <argLine>${maven.surefire.argLine}</argLine>
-                            <systemProperties>
-                                <property>
-                                    <name>allure.test-results.dir</name>
-                                    <value>${rootdir}/target/allure-results</value>
-                                </property>
-                                <!--> <allure.results.directory>${rootdir}/target/allure-results</allure.results.directory-->
-                                <property>
-                                    <name>log4j.configurationFile</name>
-                                    <value>${log4j.config}</value>
-                                </property>
-                                <property>
-                                    <name>environment.path</name>
-                                    <value>${rootdir}\target\allure-results\environment.properties</value>
-                                </property>
-                                <property>
-                                    <name>common.cfg</name>
-                                    <value>${common.config}</value>
-                                </property>
-                                <property>
-                                    <name>aqa.teacher.cfg</name>
-                                    <value>${aqa.teacher.config}</value>
-                                </property>
-                                <property>
-                                    <name>messages.cfg</name>
-                                    <value>${messages.config}</value>
-                                </property>
-                            </systemProperties>
-                            <properties>
-                                <property>
-                                    <name>browser</name>
-                                </property>
-                            </properties>
-                            <!-- testng*.xml path -->
-                            <suiteXmlFiles>
-                                <suiteXmlFile>${rootdir}/${testng.test.suite}</suiteXmlFile>
-                            </suiteXmlFiles>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-            <reporting>
-                <excludeDefaults>true</excludeDefaults>
-                <plugins>
-                    <plugin>
-                        <groupId>io.qameta.allure</groupId>
-                        <artifactId>allure-testng</artifactId>
-                        <version>${allure.version}</version>
-                        <configuration>
-                            <reportVersion>${allure.version}</reportVersion>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </reporting>
-        </profile>
-    </profiles>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${plugin.maven.surefire}</version>
+                <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <argLine>${maven.surefire.argLine}</argLine>
+                    <systemProperties>
+                        <property>
+                            <name>allure.test-results.dir</name>
+                            <value>${rootdir}/target/allure-results</value>
+                        </property>
+                        <!--> <allure.results.directory>${rootdir}/target/allure-results</allure.results.directory-->
+                        <property>
+                            <name>log4j.configurationFile</name>
+                            <value>${log4j.config}</value>
+                        </property>
+                        <property>
+                            <name>environment.path</name>
+                            <value>${rootdir}\target\allure-results\environment.properties</value>
+                        </property>
+                        <property>
+                            <name>common.cfg</name>
+                            <value>${common.config}</value>
+                        </property>
+                        <property>
+                            <name>aqa.teacher.cfg</name>
+                            <value>${aqa.teacher.config}</value>
+                        </property>
+                        <property>
+                            <name>messages.cfg</name>
+                            <value>${messages.config}</value>
+                        </property>
+                    </systemProperties>
+                    <properties>
+                        <property>
+                            <name>browser</name>
+                        </property>
+                    </properties>
+                    <!-- testng*.xml path -->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${rootdir}/${testng.test.suite}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <!--https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
