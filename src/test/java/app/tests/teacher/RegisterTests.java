@@ -42,6 +42,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest = new TeacherScenario();
         teacherTest.register(teacher);
     }
+/*
 
     @Test(groups = { "teacher", "register" }, description = "Test 02. Register new Teacher with empty form fields.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
@@ -52,6 +53,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister2(teacher,errorMsg);
     }
+*/
 
     @Test(groups = { "teacher", "register" }, description = "Test 03. Register new Teacher with empty field First Name.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
@@ -63,7 +65,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister(teacher,errorMsg);
     }
-
+/*
     @Test(groups = { "teacher", "register" }, description = "Test 04. Register new Teacher with empty field Last Name.",enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("009")
@@ -73,7 +75,7 @@ public class RegisterTests extends BaseTestGui {
         String errorMsg=getProperty("error.enter.last.name");
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister(teacher,errorMsg);
-    }
+    }*/
 
     @Test(groups = { "teacher", "register" }, description = "Test 05. Register new Teacher with empty field School/Organization.")//enabled = false,)
     @Severity(SeverityLevel.BLOCKER)
@@ -85,7 +87,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister2(teacher,errorMsg);
     }
-
+/*
     @Test(groups = { "teacher", "register" }, description = "Test 06. Register new Teacher with empty field Email Address.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("011")
@@ -117,7 +119,7 @@ public class RegisterTests extends BaseTestGui {
         String errorMsg=getProperty("error.select.school");
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister2(teacher,errorMsg);
-    }
+    }*/
 
     @Test(groups = { "teacher", "register" }, description = "Test 09. Register new Teacher with wrong field Email Address.")//enabled = false,)
     @Severity(SeverityLevel.BLOCKER)
@@ -129,6 +131,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister(teacher,errorMsg);
     }
+/*
 
     @Test(groups = { "teacher", "register" }, description = "Test 10. Register new Teacher with wrong field Email Address." +
             " !!!MINOR ISSUE!!!",enabled = false)
@@ -145,6 +148,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest.failedRegister(teacher,errorMsg);
     }
 
+*/
 
     @Test(groups = { "teacher", "register" }, description = "Test 11. Register new Teacher with field First Name: '    '."+
       " !!!MINOR ISSUE!!!")//enabled = false,)
@@ -158,7 +162,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister(teacher,errorMsg);
     }
-
+/*
     @Test(groups = { "teacher", "register" }, description = "Test 12. Register new Teacher field Last Name: '     '."+
             " !!!MINOR ISSUE!!!",enabled = false)
     @TmsLink("17")
@@ -170,7 +174,7 @@ public class RegisterTests extends BaseTestGui {
         String errorMsg=getProperty("error.enter.last.name");
         teacherTest = new TeacherScenario();
         teacherTest.failedRegister(teacher,errorMsg);
-    }
+    }*/
 
     @Test(groups = { "teacher", "register" }, description = "Test 13. Register new Teacher for busy email.")//enabled = false,)
     @Severity(SeverityLevel.BLOCKER)
