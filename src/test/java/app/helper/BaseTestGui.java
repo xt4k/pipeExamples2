@@ -1,6 +1,5 @@
 package app.helper;
 
-import app.utils.CommonOperations;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -53,10 +52,6 @@ public class BaseTestGui {
     @Parameters({ "browser", "timeout", "headless" })
     @BeforeSuite(description = "Initial configuration before every TestSuite (Set System variables for test suite, open browser).", alwaysRun = true)
     public void suiteSetup(@Optional("chrome") String setBrowser, @Optional("10000") String timeOut, @Optional("true") String setHeadless) {
-        String startTime = new CommonOperations( ).getAccurateTime( );
-        setProperty(("test.start.time"), startTime);
-        reportInfo(format("Initial time:'%s'", startTime));
-
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide( ));
         String commonPropsPath = getProperty("common.cfg");
         String aQaTeacherPath = getProperty("aqa.teacher.cfg");
@@ -144,7 +139,6 @@ public class BaseTestGui {
     @AfterSuite(alwaysRun = true)
     @Step("Create environment properties file and Close test suite.")
     public void testSuiteDown( ) {
-        new CommonOperations( ).fSaveToEnvironmentFile( );
         reportInfo("Close test suite.");
     }
 

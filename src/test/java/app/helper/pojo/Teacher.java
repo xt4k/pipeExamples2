@@ -1,11 +1,11 @@
 package app.helper.pojo;
 
 import app.helper.BaseTestGui;
-import app.utils.CommonOperations;
 
 import static io.qameta.allure.Allure.step;
 import static java.lang.String.format;
 import static java.lang.System.getProperty;
+import static org.apache.commons.lang.RandomStringUtils.random;
 
 public class Teacher extends BaseTestGui {
     private String index;
@@ -22,8 +22,7 @@ public class Teacher extends BaseTestGui {
 
 
     public Teacher() {
-        CommonOperations co = new CommonOperations();
-        index = co.getRandomMultiDigitNumber(9);
+        index = random(5, true, true);
         type=getProperty("teacher.type");
         position=getProperty("teacher.position");
         firstName=getProperty("teacher.prefix")+"_FirstName_"+ index;
@@ -49,8 +48,7 @@ public class Teacher extends BaseTestGui {
 
 
     public Teacher(String fName,String lName,String schl,String mail,String psswd) {
-        CommonOperations co = new CommonOperations();
-        index = co.getRandomMultiDigitNumber(9);
+        index = random(9, true, true);
         type=getProperty("teacher.type");
         position=getProperty("teacher.position");
         firstName=fName;
