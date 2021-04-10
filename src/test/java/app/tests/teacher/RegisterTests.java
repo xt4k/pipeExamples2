@@ -17,9 +17,9 @@ import static com.codeborne.selenide.Selenide.open;
 import static java.lang.String.valueOf;
 import static java.lang.System.getProperty;
 
-@Epic("MobyMax Automation.")
-@Feature("Teacher")
-@Story("Login")
+@Epic("Pipeline as a Code.")
+@Feature("Ui Tests")
+@Story("Several passed and 1 failed test")
 
 public class RegisterTests extends BaseTestGui {
     private TeacherScenario teacherTest;
@@ -35,30 +35,6 @@ public class RegisterTests extends BaseTestGui {
     }
 
 
-
-    @AfterMethod(description = "Test completion fixture. For failed cases: Add page screenshot, then navigate to initial point.", alwaysRun = true)
-    public void afterTest(ITestResult result) {
-        try {
-            String sResult = testResultMsg(result );
-            LOG.info(sResult);
-            if (result.getStatus() == ITestResult.SUCCESS) reportInfo("Auto-Test_Result: PASSED!!!!!! ");
-            else if (result.getStatus() == ITestResult.FAILURE) {
-                LOG.info("\nAuto-Test_Result: FAILED??????? ");
-                infoShot("APP page state after failed test.");
-                open(baseUrl);
-            } else if (result.getStatus() == ITestResult.SKIP)
-                reportInfo(" ********** Automated Test was skipped.**********");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        reportInfo(getMethodName() + " method completed: ");//+ bResult
-    }
-
-    @AfterClass(description = "Fixture: Navigate Main Menu after testset.")
-    public void postTestSet() {
-        infoShot(getMethodName());
-    }
-
     @Test(groups = { "teacher", "register" }, description = "Test 01.Register new Teacher .")//enabled = false,)
     @Severity(SeverityLevel.BLOCKER)  //  @TmsLink("4325")
     public void test01teacherRegister() {
@@ -67,7 +43,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest.register(teacher);
     }
 
-    @Test(groups = { "teacher", "register" }, description = "Test 02. Register new Teacher with empty form fields.")//enabled = false,)
+    @Test(groups = { "teacher", "register" }, description = "Test 02. Register new Teacher with empty form fields.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("007")
     public void test02teacherRegister() {
@@ -77,7 +53,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest.failedRegister2(teacher,errorMsg);
     }
 
-    @Test(groups = { "teacher", "register" }, description = "Test 03. Register new Teacher with empty field First Name.")//enabled = false,)
+    @Test(groups = { "teacher", "register" }, description = "Test 03. Register new Teacher with empty field First Name.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("008")
     public void test03teacherRegister() {
@@ -88,7 +64,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest.failedRegister(teacher,errorMsg);
     }
 
-    @Test(groups = { "teacher", "register" }, description = "Test 04. Register new Teacher with empty field Last Name.")//enabled = false,)
+    @Test(groups = { "teacher", "register" }, description = "Test 04. Register new Teacher with empty field Last Name.",enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("009")
     public void test04teacherRegister() {
@@ -110,7 +86,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest.failedRegister2(teacher,errorMsg);
     }
 
-    @Test(groups = { "teacher", "register" }, description = "Test 06. Register new Teacher with empty field Email Address.")//enabled = false,)
+    @Test(groups = { "teacher", "register" }, description = "Test 06. Register new Teacher with empty field Email Address.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("011")
     public void test06teacherRegister() {
@@ -121,7 +97,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest.failedRegister(teacher,errorMsg);
     }
 
-    @Test(groups = { "teacher", "register" }, description = "Test 07. Register new Teacher with empty field Password.")//enabled = false,)
+    @Test(groups = { "teacher", "register" }, description = "Test 07. Register new Teacher with empty field Password.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("012")
     public void test07teacherRegister() {
@@ -132,7 +108,7 @@ public class RegisterTests extends BaseTestGui {
         teacherTest.failedRegister(teacher,errorMsg);
     }
 
-    @Test(groups = { "teacher", "register" }, description = "Test 08. Register new Teacher with wrong field School/Organization.")//enabled = false,)
+    @Test(groups = { "teacher", "register" }, description = "Test 08. Register new Teacher with wrong field School/Organization.", enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("013")
     public void test08teacherRegister() {
@@ -155,7 +131,7 @@ public class RegisterTests extends BaseTestGui {
     }
 
     @Test(groups = { "teacher", "register" }, description = "Test 10. Register new Teacher with wrong field Email Address." +
-            " !!!MINOR ISSUE!!!")//enabled = false,)
+            " !!!MINOR ISSUE!!!",enabled = false)
     @Severity(SeverityLevel.BLOCKER)
     @TmsLink("15")
     @Issue("1")
@@ -184,7 +160,7 @@ public class RegisterTests extends BaseTestGui {
     }
 
     @Test(groups = { "teacher", "register" }, description = "Test 12. Register new Teacher field Last Name: '     '."+
-            " !!!MINOR ISSUE!!!")//enabled = false,)
+            " !!!MINOR ISSUE!!!",enabled = false)
     @TmsLink("17")
     @Issue("2")
     @Severity(SeverityLevel.BLOCKER)

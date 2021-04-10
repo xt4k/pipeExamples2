@@ -12,15 +12,11 @@
 
     <properties>
         <allure-testng.version>2.10.0</allure-testng.version>
-        <!-- TestNG settings -->
         <!--suppress UnresolvedMavenProperty -->
         <testng.test.suite>Suites/${suite}.xml</testng.test.suite>
         <default.test.suite>Suites/common.xml</default.test.suite>
-        <!--jdk version-->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.version>3.8.1</maven.compiler.version>
-        <plugin.maven.resource>3.1.0</plugin.maven.resource>
         <plugin.maven.surefire>2.22.2</plugin.maven.surefire>
         <maven.surefire.argLine>
             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -68,14 +64,9 @@
                             <name>allure.test-results.dir</name>
                             <value>${rootdir}/target/allure-results</value>
                         </property>
-                        <!--> <allure.results.directory>${rootdir}/target/allure-results</allure.results.directory-->
                         <property>
                             <name>log4j.configurationFile</name>
                             <value>${log4j.config}</value>
-                        </property>
-                        <property>
-                            <name>environment.path</name>
-                            <value>${rootdir}\target\allure-results\environment.properties</value>
                         </property>
                         <property>
                             <name>common.cfg</name>
@@ -90,11 +81,6 @@
                             <value>${messages.config}</value>
                         </property>
                     </systemProperties>
-                    <properties>
-                        <property>
-                            <name>browser</name>
-                        </property>
-                    </properties>
                     <!-- testng*.xml path -->
                     <suiteXmlFiles>
                         <suiteXmlFile>${rootdir}/${testng.test.suite}</suiteXmlFile>
