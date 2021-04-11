@@ -16,7 +16,7 @@ pipeline {
 	    
 	    stage('02 run auto-test_in_Maven') {
 		    steps {
-			    withMaven(globalMavenSettingsConfig: '2115a339-7bf0-4a98-8e0c-6e2742b17571', jdk: 'jdk-8', maven: 'maven') {
+			    withMaven( jdk: 'jdk-8', maven: 'maven') {
 				    sh '${MAVEN_HOME}/bin/mvn -Dbrowser=chrome  -Dmaven.test.failure.ignore -Dsuite=common clean test'
 				     //sh 'mvn -Dbrowser=chrome  -Dmaven.test.failure.ignore -Dsuite=common clean test'
 			    }
