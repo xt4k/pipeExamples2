@@ -8,7 +8,7 @@ node {
 		}
 	stage('02 Run_Auto-Test (in_Gradle)') {
 		withGradle () {
-			sh '/home/jenkins/tools/hudson.plugins.gradle.GradleInstallation/Gradle_6.8.2/bin/gradle clean -Dbrowser=chrome -Dsuite=common test'
+			sh ' sh "./gradlew clean -Dbrowser=chrome -Dsuite=common test'
 		//withMaven(globalMavenSettingsConfig: '2115a339-7bf0-4a98-8e0c-6e2742b17571', jdk: 'jdk-8', maven: 'maven') {
 		// sh 'mvn -Dbrowser=chrome  -Dmaven.test.failure.ignore -Dsuite=common clean test'
 		}
