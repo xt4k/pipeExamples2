@@ -36,7 +36,7 @@ pipeline {
 
 	    stage ("send chart email") {
         		    steps {
-        		        sh 'java  "-Dchat.id=-1001424392176" "-Dbot.token=1624369115:AAFskvWdGdr1d47B-b5Q7ZHvHwNsn02hPCo" "-Dproject.name=${JOB_BASE_NAME}" "-Dbuild.launch.name=Some release 2.0" "-Dbuild.report.link=${BUILD_URL}" "-Dlang=en -Denable.chart=true" "-Dallure.report.folder=./allure-report/" -jar allure-notifications-2.2.2.jar'
+        		        sh 'java  "-Dchat.id=-1001424392176" "-Dbot.token=1624369115:AAFskvWdGdr1d47B-b5Q7ZHvHwNsn02hPCo" "-Dproject.name=${JOB_BASE_NAME}" "-Dbuild.launch.name=Some release 2.0" "-Dbuild.env=https://prod.your.site" "-Dbuild.report.link=${BUILD_URL}" "-Dlang=en" "-Denable.chart=true" "-Dallure.report.folder=./allure-report/" -jar allure-notifications-2.2.2.jar'
         		    }
         }
     }
