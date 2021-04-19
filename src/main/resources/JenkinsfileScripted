@@ -1,0 +1,21 @@
+node {
+	   stage('00 clean ws') {
+		   cleanWs()
+	   }
+	
+	stage("01 github checkout"){
+		git 'https://github.com/xt4k/pipeExamples2'
+		}
+	stage('02 Run_Auto-Test (in_Gradle)') {
+		withMaven(globalMavenSettingsConfig: '2115a339-7bf0-4a98-8e0c-6e2742b17571', jdk: 'jdk-8', maven: 'maven') {
+		 sh 'mvn -Dbrowser=chrome  -Dmaven.test.failure.ignore -Dsuite=common clean test'
+		}
+	}
+
+	stage("allure report add") {
+                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+                }
+	stage ("send notif to telegram") {
+		telegramSend(message: "BUILD_TAG: ${BUILD_TAG} completed scriptedly", chatId: -1001424392176)
+        }    
+}
