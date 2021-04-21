@@ -40,16 +40,16 @@ pipeline {
         		    }
         }
 
-	            stage ("19 send chart to email") {
+	            stage ("19 send chart to email1") {
         			steps {
         			sh 'java "-Dmessenger=email" "-Dmail.host=smtp.gmail.com" "-Dmail.port=465" "-Dmail.username=vasyalogvinov777@gmail.com" "-Dmail.password=1234567890_qwerty" "-Dproject.name=${JOB_BASE_NAME}" "-Dbuild.launch.name=Some release 2.0" "-Dbuild.env=https://prod.your.site" "-Dbuild.report.link=${BUILD_URL}" "-Dlang=en" "-Denable.chart=true" "-Dallure.report.folder=./allure-report/" -jar allure-notifications-2.2.2.jar'
               		}
                 }
 	    
 	    
-        stage ("19 send chart to email") {
+        stage ("19 send chart to email2") {
         			steps {
-        			sh 'java "-Dmessenger=email" "-Dmail.host=smtp.gmail.com" "-Dmail.port=465" "-Dmail.username=vasyalogvinov777@gmail.com" "-Dmail.password=1234567890_qwerty" "-Dproject.name=${JOB_BASE_NAME}" "-Dbuild.launch.name=Some release 2.0" "-Dbuild.env=https://prod.your.site" "-Dbuild.report.link=${BUILD_URL}" "-Dlang=en" "-Denable.chart=true" "-Dallure.report.folder=./allure-report/" -jar allure-notifications-2.2.2.jar'
+        			sh 'java "-Dmessenger=email" "-Dmail.host=smtp.ukr.net" "-Dmail.port=465" "-Dmail.username=vasayivanov777@ukr.net" "-Dmail.password=1234567890_qwerty" "-Dproject.name=${JOB_BASE_NAME}" "-Dbuild.launch.name=Some release 2.0" "-Dbuild.env=https://prod.your.site" "-Dbuild.report.link=${BUILD_URL}" "-Dlang=en" "-Denable.chart=true" "-Dallure.report.folder=./allure-report/" -jar allure-notifications-2.2.2.jar'
               		}
                 }
     }
