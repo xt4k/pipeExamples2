@@ -42,7 +42,7 @@ pipeline {
 
         stage ("19 send chart to email") {
         			steps {
-        				sh 'java "-Dmessenger=email" "-Dmail.host=smtp.office365.com" "-Dmail.port=587" "-Dmail.username=app.automation@adonis.no" "-Dmail.password=Rootfilling33" "-Dmail.to=yuriy.logvinov@adonis.no, yuriy.logvinov@adonis.no" "-Dproject.name=${JOB_BASE_NAME}" "-Dbuild.launch.name=Some release 2.0" "-Dbuild.env=https://prod.your.site" "-Dbuild.report.link=${BUILD_URL}" "-Dlang=en" "-Denable.chart=true" "-Dallure.report.folder=./allure-report/" -jar allure-notifications-2.2.2.jar'
+        				sh 'java "-Dmessenger=email" "-Dmail.host=smtp.office365.com" "-Dmail.port=587" "-Dmail.username=some@email.com" "-Dmail.password=Rootfilling33" "-Dmail.to=yuriy.logvinov@adonis.no, yuriy.logvinov@adonis.no" "-Dproject.name=${JOB_BASE_NAME}" "-Dbuild.launch.name=Some release 2.0" "-Dbuild.env=https://prod.your.site" "-Dbuild.report.link=${BUILD_URL}" "-Dlang=en" "-Denable.chart=true" "-Dallure.report.folder=./allure-report/" -jar allure-notifications-2.2.2.jar'
               		}
                 }
     }
