@@ -42,7 +42,7 @@ pipeline {
 
         stage ("19 send chart to email") {
         			steps {
-        			
+        			echo 'here will be sending to e-mail'
               		}
                 }
     }
